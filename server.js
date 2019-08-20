@@ -64,11 +64,16 @@ function getWeather(/*weather*/) {
 }
 
 function toWeather(weather) {
-    const firstResponse = weather.daily.data[0];
-    return {
-        forecast: firstResponse.summary,
-        time: firstResponse.time
-    };
+    let dataArray = [];
+    for(let i = 0; i < weather.daily.length; i++) {
+        const firstResponse = weather.daily.data[i];
+        let dataObject = {
+            forecast: firstResponse.summary,
+            time: firstResponse.time
+        };
+        dataArray.push(dataObject);
+    }
+    return dataArray;
 }
 
 app.listen(PORT, () => {
