@@ -64,12 +64,12 @@ function getWeather(/*weather*/) {
 }
 
 function toWeather(weather) {
+    const pathToData = weather.daily.data;
     let dataArray = [];
-    for(let i = 0; i < weather.daily.length; i++) {
-        const firstResponse = weather.daily.data[i];
+    for(let i = 0; i < pathToData.length; i++) {
         let dataObject = {
-            forecast: firstResponse.summary,
-            time: firstResponse.time
+            forecast: pathToData[i].summary,
+            time: pathToData[i].time
         };
         dataArray.push(dataObject);
     }
