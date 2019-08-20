@@ -56,7 +56,7 @@ app.get('/weather', (request, response) => {
     }
 });
 
-const weather = require('.data/darksky.json');
+const weather = require('./data/darksky.json');
 
 function getWeather(/*weather*/) {
     //api call will go here
