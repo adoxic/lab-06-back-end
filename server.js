@@ -23,4 +23,29 @@ app.get('/location', (request, response) => {
         const result = getLatLng(location);
         response.status(200).json(result);
     }
-})
+    catch(err) {
+        response.status(500).send('Sorry, something went wrong please try again.');
+    }
+
+});
+
+const geoData = require('./data/geo.json');
+
+function getLatLng(/*placeholder for api*/) {
+    //api call will go here
+    return toLocation(geoData);
+}
+
+function toLocation(geoData) {
+    const firstResponse = geoData.results[0];
+    const geometry = firstResponse.geometry;
+    return {
+        formatted_query: firstResponse.formatted_address,
+        latitude: geometry.location.lat,
+        longitude: geometry.location.lng
+    };
+}
+
+app.listen(PORT, () => {
+    console.log('server running on PORT', PORT);
+});
